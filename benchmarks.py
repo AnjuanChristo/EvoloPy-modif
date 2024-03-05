@@ -128,35 +128,34 @@ def F13(x):
     return o
 
 
-def F14(x):
-    aS = [
-        [
-            -32, -16, 0, 16, 32,
-            -32, -16, 0, 16, 32,
-            -32, -16, 0, 16, 32,
-            -32, -16, 0, 16, 32,
-            -32, -16, 0, 16, 32,
-        ],
-        [
-            -32, -32, -32, -32, -32,
-            -16, -16, -16, -16, -16,
-            0, 0, 0, 0, 0,
-            16, 16, 16, 16, 16,
-            32, 32, 32, 32, 32,
-        ],
-    ]
-    aS = np.asarray(aS)
-    bS = np.zeros(25)
-    v = np.matrix(x)
-    for i in range(0, 25):
-        H = v - aS[:, i]
-        bS[i] = np.sum((np.power(H, 6)))
-    w = [i for i in range(25)]
-    for i in range(0, 24):
-        w[i] = i + 1
-    o = ((1.0 / 500) + np.sum(1.0 / (w + bS))) ** (-1)
-    return o
+def objective_function(weights, comparison_matrix):
+    n = len(weights)
+    obj_value = 0
+    for i in range(n):
+        for j in range(n):
+            obj_value += (comparison_matrix[i][j] - weights[i] / weights[j])**2
+    return obj_value
 
+def constraint(weights):
+    return np.sum(weights) - 1
+
+# Contoh matriks perbandingan berpasangan
+comparison_matrix = np.array([[1, 2, 3],
+                              [0.5, 1, 2],
+                              [1/3, 0.5, 1]])
+
+# Inisialisasi bobot awal
+initial_weights = np.array([0.3, 0.4, 0.3])
+
+# Mendefinisikan batasan (constraint) bahwa jumlah semua bobot harus sama dengan 1
+constraint_definition = {'type': 'eq', 'fun': constraint}
+
+# Meminimalkan fungsi objektif dengan batasan tertentu
+result = minimize(objective_function, initial_weights, args=(comparison_matrix,),
+                  constraints=constraint_definition)
+
+print("Bobot optimal:", result.x)
+print("Nilai fungsi objektif terendah:", result.fun)
 
 def F15(L):
     aK = [
