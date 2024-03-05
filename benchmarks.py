@@ -9,7 +9,7 @@ import numpy as np
 import math
 from scipy.io import loadmat
 from basic_functions import fsphere, fgriewank, frastrigin, fackley, fweierstrass
-
+from scipy.optimize import minimize
 
 # define the function blocks
 def prod(it):
