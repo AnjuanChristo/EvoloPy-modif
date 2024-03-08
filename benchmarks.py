@@ -128,7 +128,7 @@ def F13(x):
     return o
 
 
-def objective_function(weights, comparison_matrix):
+def LSM(weights, comparison_matrix):
     n = len(weights)
     obj_value = 0
     for i in range(n):
@@ -145,7 +145,7 @@ comparison_matrix = np.array([[1, 2, 3],
 initial_weights = np.array([0.3, 0.4, 0.3])
 
 # Meminimalkan fungsi objektif dengan batasan tertentu
-result = minimize(lambda weights: objective_function(weights, comparison_matrix), initial_weights,
+result = minimize(lambda weights: LSM(weights, comparison_matrix), initial_weights,
                   constraints={'type': 'eq', 'fun': lambda weights: np.sum(weights) - 1})
 
 print("Bobot optimal:", result.x)
