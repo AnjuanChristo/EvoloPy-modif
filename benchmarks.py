@@ -136,9 +136,6 @@ def objective_function(weights, comparison_matrix):
             obj_value += (comparison_matrix[i][j] - weights[i] / weights[j])**2
     return obj_value
 
-def constraint(weights):
-    return np.sum(weights) - 1
-
 # Contoh matriks perbandingan berpasangan
 comparison_matrix = np.array([[1, 2, 3],
                               [0.5, 1, 2],
@@ -147,15 +144,13 @@ comparison_matrix = np.array([[1, 2, 3],
 # Inisialisasi bobot awal
 initial_weights = np.array([0.3, 0.4, 0.3])
 
-# Mendefinisikan batasan (constraint) bahwa jumlah semua bobot harus sama dengan 1
-constraint_definition = {'type': 'eq', 'fun': constraint}
-
 # Meminimalkan fungsi objektif dengan batasan tertentu
-result = minimize(objective_function, initial_weights, args=(comparison_matrix,),
-                  constraints=constraint_definition)
+result = minimize(lambda weights: objective_function(weights, comparison_matrix), initial_weights,
+                  constraints={'type': 'eq', 'fun': lambda weights: np.sum(weights) - 1})
 
 print("Bobot optimal:", result.x)
 print("Nilai fungsi objektif terendah:", result.fun)
+
 
 def F15(L):
     aK = [
