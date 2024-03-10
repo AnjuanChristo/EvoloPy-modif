@@ -43,6 +43,7 @@ def GWO(objf, lb, ub, dim, SearchAgents_no, Max_iter):
         )
 
     Convergence_curve = numpy.zeros(Max_iter)
+    Best_position = numpy.zeros(Shape = (Max_iter, dim))
     s = solution()
 
     # Loop counter
@@ -130,7 +131,7 @@ def GWO(objf, lb, ub, dim, SearchAgents_no, Max_iter):
                 Positions[i, j] = (X1 + X2 + X3) / 3  # Equation (3.7)
 
         Convergence_curve[l] = Alpha_score
-
+        Best_position[l] = Alpha_pos
         if l % 1 == 0:
             print(
                 ["At iteration " + str(l) + " the best fitness is " + str(Alpha_score)]
