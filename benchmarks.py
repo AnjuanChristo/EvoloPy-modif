@@ -128,28 +128,19 @@ def F13(x):
     return o
 
 
-def LSM(weights, comparison_matrix):
+def LSM(weights):
+    comparison_matrix = np.array([[1, 2, 3],
+                              [0.5, 1, 2],
+                              [1/3, 0.5, 1]])
     n = len(weights)
     obj_value = 0
     for i in range(n):
         for j in range(n):
             obj_value += (comparison_matrix[i][j] - weights[i] / weights[j])**2
     return obj_value
-
-# Contoh matriks perbandingan berpasangan
-comparison_matrix = np.array([[1, 2, 3],
-                              [0.5, 1, 2],
-                              [1/3, 0.5, 1]])
-
-# Inisialisasi bobot awal
-initial_weights = np.array([0.3, 0.4, 0.3])
-
-# Meminimalkan fungsi objektif dengan batasan tertentu
-result = minimize(lambda weights: LSM(weights, comparison_matrix), initial_weights,
-                  constraints={'type': 'eq', 'fun': lambda weights: np.sum(weights) - 1})
-
-print("Bobot optimal:", result.x)
-print("Nilai fungsi objektif terendah:", result.fun)
+    penalty_factor = 100
+    penalty_term = penalty_factor * (np.sum(weights) - 1)**2
+    return obj_value + penalty_term
 
 
 def F15(L):
@@ -668,6 +659,7 @@ def getFunctionDetails(a):
         "F22": ["F22", 0, 10, 4],
         "F23": ["F23", 0, 10, 4],
         "F24": ["F24", 0, 1.5, 2],
+        "LSM":["LSM", 0, 1, 3],
         "CF1": ["CF1", -5, 5, 10],
         "CF2": ["CF2", -5, 5, 10],
         "CF3": ["CF3", -5, 5, 10],
