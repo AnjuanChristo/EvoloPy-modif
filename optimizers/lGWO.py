@@ -54,6 +54,7 @@ def lGWO(objf, lb, ub, dim, SearchAgents_no, Max_iter):
         Fitness[i] = objf(Positions[i, :])
 
     Convergence_curve = numpy.zeros(Max_iter)
+    Best_position = numpy.zeros(shape = (Max_iter, dim))
     s = solution()
 
     # Loop counter
@@ -209,16 +210,18 @@ def lGWO(objf, lb, ub, dim, SearchAgents_no, Max_iter):
                 
 
         Convergence_curve[l] = Alpha_score
+        Best_position[l] = Alpha_pos
 
         if l % 1 == 0:
             print(
-                ["At iteration " + str(l) + " the best fitness is " + str(Alpha_score)]
+               ["At iteration " + str(l) + " the best fitness is " + str(Alpha_score) + " and the best position is " + str(Alpha_pos)]
             )
 
     timerEnd = time.time()
     s.endTime = time.strftime("%Y-%m-%d-%H-%M-%S")
     s.executionTime = timerEnd - timerStart
     s.convergence = Convergence_curve
+    s.bestIndividual = Best_position
     s.optimizer = "lGWO"
     s.objfname = objf.__name__
 
