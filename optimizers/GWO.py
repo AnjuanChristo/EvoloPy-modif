@@ -141,6 +141,7 @@ def GWO(objf, lb, ub, dim, SearchAgents_no, Max_iter):
     s.endTime = time.strftime("%Y-%m-%d-%H-%M-%S")
     s.executionTime = timerEnd - timerStart
     s.convergence = Convergence_curve
+    s.bestIndividual = Best_position
     s.optimizer = "GWO"
     s.objfname = objf.__name__
 
