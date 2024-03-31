@@ -129,10 +129,10 @@ def F13(x):
 
 
 def LSM(weights):
-    comparison_matrix = np.array([[1, 8, 8, 6],
-                              [1/8, 1, 7, 1/5],
-                              [1/8, 1/7, 1, 1/8],
-                                 [1/6, 5, 8, 1]])
+    comparison_matrix = np.array([[1, 5, 6, 7],
+                                [1/5, 1, 4, 6],
+                                [1/6, 1/4, 1, 5],
+                                [1/7, 1/6, 1/4, 1]])
     n = len(weights)
     obj_value = 0
     for i in range(n):
