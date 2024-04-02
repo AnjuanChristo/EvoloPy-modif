@@ -141,7 +141,7 @@ def LSM(weights):
             
     penalty_factor = 100
     penalty_term = penalty_factor * (np.sum(weights) - 1)**2
-    return obj_value + penalt
+    return obj_value + penalty_term
 
 def F15(L):
     aK = [
