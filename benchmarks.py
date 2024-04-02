@@ -139,9 +139,7 @@ def LSM(weights):
         for j in range(n):
             obj_value += (comparison_matrix[i][j] - weights[i] / weights[j])**2
     
-    penalty_factor = 100
-    penalty_term = penalty_factor * (np.sum(weights) - 1)**2
-    return obj_value + penalty_term
+
 
 
 def F15(L):
