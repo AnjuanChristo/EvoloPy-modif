@@ -15,9 +15,10 @@ import time
 def GWO(objf, lb, ub, dim, SearchAgents_no, Max_iter):
 
     # Max_iter=1000
-    # lb=-100
+    # lb=-100(batas atas
     # ub=100
-    # dim=30
+    # dim=30(populasi)
+    
     # SearchAgents_no=5
 
     # initialize alpha, beta, and delta_pos
