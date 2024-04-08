@@ -129,10 +129,9 @@ def F13(x):
 
 
 def LSM(weights):
-    comparison_matrix = np.array([[1, 8, 8, 6],
-                                [1/8, 1, 7,1/5],
-                                [1/8, 1/7, 1, 1/8],
-                                 [1/6, 5, 8, 1]])
+    comparison_matrix = np.array([[1, 3.69, 0.24],
+                            [0.27, 1, 0.15],
+                            [4.1, 6.54, 1]])
     n = len(weights)
     obj_value = 0
     for i in range(n):
@@ -659,7 +658,7 @@ def getFunctionDetails(a):
         "F22": ["F22", 0, 10, 4],
         "F23": ["F23", 0, 10, 4],
         "F24": ["F24", 0, 1.5, 2],
-        "LSM":["LSM", 0, 1, 4],
+        "LSM":["LSM", 0, 1, 3],
         "CF1": ["CF1", -5, 5, 10],
         "CF2": ["CF2", -5, 5, 10],
         "CF3": ["CF3", -5, 5, 10],
