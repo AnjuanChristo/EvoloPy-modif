@@ -17,7 +17,7 @@ def GWO(objf, lb, ub, dim, SearchAgents_no, Max_iter):
     # Max_iter=1000
     # lb=-100(batas atas
     # ub=100
-    # dim=30(populasi)
+    # dim=30
     
     # SearchAgents_no=5
 
